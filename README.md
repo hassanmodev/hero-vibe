@@ -1,9 +1,7 @@
-# ✨ Hero Vibe - Interactive AI-Powered Landing Pages
+# Hero Vibe - Interactive AI-Powered Landing Pages
 
-![Hero Vibe Demo](https://img.shields.io/badge/DEMO-Live%20Preview-blue?style=for-the-badge)
-
-Transform your landing pages with AI-powered, editable hero sections. Magic at the speed of a click.
-
+### Hero Vibe mini challenge.
+#### This project is a simple yet powerful web application that allows users to create and edit landing pages using AI-generated content and images. The app is built with React, Tailwind CSS, and Framer Motion for smooth animations.  
 
 ## 🛠️ Quick Start
 

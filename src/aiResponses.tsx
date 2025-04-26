@@ -87,7 +87,7 @@ export const aiResponses: AIResponse[] = [
       ctaBlock: "mt-10 flex gap-6 flex-wrap",
     },
     buttonStyles: {
-      primary: `${buttonBaseStyles.common} bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 hover:shadow-blue-500/30 hover:scale-105`,
+      primary: `${buttonBaseStyles.common} text-white bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 hover:shadow-blue-500/30 hover:scale-105`,
       secondary: `${buttonBaseStyles.common} bg-white border-2 border-indigo-500 text-indigo-900 hover:bg-indigo-100 hover:shadow-indigo-500/20 hover:scale-105`,
     }
   },

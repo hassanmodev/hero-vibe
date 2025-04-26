@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { aiResponses, getRandomContent, type AIResponse } from "./aiResponses";
+import { aiResponses, getRandomContent, saveResponses, type AIResponse } from "./aiResponses";
 import { HeroImage } from "./HeroImage";
 import { PromptForm } from "./PromptForm";
 import { ButtonGroup } from "./ButtonGroup";
@@ -17,14 +17,24 @@ export const HeroSection = () => {
   }, [content.header]);
 
   const handleChange = useCallback((setter: (content: AIResponse) => AIResponse) => {
-    setContent((prev) => setter(prev));
+    setContent((prev) => {
+      const updatedContent = setter(prev);
+      
+      // Update aiResponses array and save to localStorage
+      const updatedResponses = aiResponses.map(response => 
+        response.header === prev.header ? updatedContent : response
+      );
+      saveResponses(updatedResponses);
+      
+      return updatedContent;
+    });
   }, []);
 
   const handlePromptSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     setPrompt("");
     handleRegenerate();
-  }, [prompt, handleRegenerate]);
+  }, [handleRegenerate]);
 
   const { wrapper, textBlock, imageBlock, ctaBlock } = content.layout;
   const { primary, secondary } = content.buttonStyles;

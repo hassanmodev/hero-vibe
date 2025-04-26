@@ -25,8 +25,11 @@ const buttonBaseStyles = {
   common: "font-medium shadow-lg transition-all duration-300",
 };
 
+// LocalStorage key
+const LS_KEY = 'ai-responses';
+
 // Response templates with diverse images and optimized styling
-export const aiResponses: AIResponse[] = [
+export const defaultResponses: AIResponse[] = [
   {
     header: "Future-Driven Tools",
     subheader: "Harness the power of modern AI tech.",
@@ -125,13 +128,27 @@ export const aiResponses: AIResponse[] = [
   },
 ];
 
+// Get responses from localStorage or use defaults
+export const aiResponses: AIResponse[] = (() => {
+  try {
+    const saved = localStorage.getItem(LS_KEY);
+    return saved ? JSON.parse(saved) : defaultResponses;
+  } catch (e) {
+    console.error('Error loading from localStorage:', e);
+    return defaultResponses;
+  }
+})();
+
+// Save responses to localStorage
+export const saveResponses = (responses: AIResponse[] = aiResponses) => 
+  localStorage.setItem(LS_KEY, JSON.stringify(responses));
+
 // Optimized function with proper type safety
 export function getRandomContent(currentHeadline: string): AIResponse {
   const availableResponses = aiResponses.filter(response => 
     response.header !== currentHeadline
   );
   
-  // Use a more reliable random selection
   return availableResponses[Math.floor(Math.random() * availableResponses.length)];
 }
 
